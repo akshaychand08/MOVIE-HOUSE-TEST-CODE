@@ -33,14 +33,24 @@ BUTTONS = {}
 SPELL_CHECK = {}
 
 
-
-@Client.on_message(filters.group & filters.text & filters.incoming)
+@Client.on_message(filters.text & ~filters.edited & filters.incoming)
 async def give_filter(client, message):
-    settings = await get_settings(message.chat.id)
-    if settings['manual_filter']:
-        await manual_filters(client, message)
-    if settings['auto_filters']:
-        await auto_filter(client, message)
+    if MAINTENANCE_MODE:
+        if AUTH_USERS and message.from_user and message.from_user.id in AUTH_USERS:
+            k = await manual_filters(client, message)
+            if k == False:
+                await auto_filter(client, message)
+        else:
+            btn = [
+        [
+            InlineKeyboardButton('⚡️ ғɪʟᴍʏ ғᴜɴᴅᴀ ᴍᴏᴠɪᴇs ⚡️', url=f'https://t.me/filmyfunda_movies')
+        ]
+        ]
+        await message.reply_text(f"🔰𝗡𝗢𝗧𝗜𝗖𝗘🔰\n\nService is 𝕔𝕝𝕠𝕤𝕖𝕕 for a wile.\nwill start again <u>soon.</u>.\n\n𝖡𝗒 𝗍𝗁𝗂𝗌 𝗍𝗂𝗆𝖾, 𝖬𝖺𝗄𝖾 𝗌𝗎𝗋𝖾 <b>you have 𝗌𝗎𝖻𝗌𝖼𝗋𝗂𝖻𝖾𝖽 Filmyfunda movies group👇🏻</b>", reply_markup=InlineKeyboardMarkup(btn))    
+    else:
+        k = await manual_filters(client, message)
+        if k == False:
+            await auto_filter(client, message)
 
 
 @Client.on_callback_query(filters.regex(r"^next"))
