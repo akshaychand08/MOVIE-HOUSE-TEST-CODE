@@ -47,6 +47,7 @@ BOT_USERNAME = os.environ.get("BOT_USERNAME", "hjhjvjjjvbot")
 
 auth_userss = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERSS', '').split()]
 AUTH_USERSS = (auth_userss) if auth_userss else []
+MAINTENANCE_MODE = is_enabled((environ.get('MAINTENANCE_MODE', "False")), False)
 
 AUTO_DELETE = is_enabled((environ.get('AUTO_DELETE', "True")), True)
 AUTO_DELETE2 = is_enabled((environ.get('AUTO_DELETE2', "True")), True)
