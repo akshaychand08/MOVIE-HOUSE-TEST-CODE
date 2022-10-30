@@ -39,7 +39,7 @@ You can deploy this bot anywhere.
 
 
 
-<a href="https://heroku.com/deploy?template=https://github.com/Sahidmalik07/movies-house-bot-test">
+<a href="https://heroku.com/deploy?template=https://github.com/Btmanjusms/MOVIE-HOUSE-TEST-CODE">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 </p>
